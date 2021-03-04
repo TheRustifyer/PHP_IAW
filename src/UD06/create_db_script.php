@@ -30,9 +30,9 @@
 	  echo "Estoy conectado a la BBDD: " . $row[0] . "<br/>";
 	  mysqli_free_result($result);
 	}
-
-    	$tabla_alumnnos = "CREATE TABLE IF NOT EXISTS alumnos (
-		codalumno INT(10) PRIMARY KEY not null,
+	$tabla_alumnnos = "CREATE TABLE IF NOT EXISTS alumnos (
+		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+		codalumno INT(10) not null,
 		nombre VARCHAR(30) not null,
 		direccion VARCHAR(45) not null,
 		curso VARCHAR(10) not null
@@ -42,7 +42,7 @@
 		    echo "Tabla creada correctamente."."<br/>";
   		    
 		} else {
-		    echo "No ha sido posible crear la tabla: ".mysqli_error($conector);
+		    echo "No ha sido posible crear la tabla: ". mysqli_error($conector);
 		}
 
 	$mysqli_close($conector);
