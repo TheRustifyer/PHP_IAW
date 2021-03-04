@@ -15,22 +15,23 @@
 	    //Creo el enlace con la BBDD
 	    $conector = mysqli_connect(HOST, USER, PASSWORD) or die("Coud not open a connection");
 
-	/*Compruebo el estado de la conexión, una vez más y ejecuto:
-	las sentencias necesarias para la creación de la BBDD.
-	Modifico el nivel de identación por comodidad al escribir en la MV.	
-	*/
-	if (!mysqli_connect_errno() && $conector) {
-	    echo "Conexión creada correctamente."."<br/>";
-	    mysqli_query($conector, $createDatabase);
-	    mysqli_select_db($conector, NOMBRE_BBDD);
+	    /*Compruebo el estado de la conexión, una vez más y ejecuto:
+	    las sentencias necesarias para la creación de la BBDD.
+	    Modifico el nivel de identación por comodidad al escribir en la MV.	
+	    */
+	    if (!mysqli_connect_errno() && $conector) {
+	        echo "Conexión creada correctamente."."<br/>";
+	        mysqli_query($conector, $createDatabase);
+	        mysqli_select_db($conector, NOMBRE_BBDD);
 
-	// Compruebo la BBDD a la que estoy actualmente conectado
-	if ($result = mysqli_query($conector, "SELECT DATABASE()")) {
-	  $row = mysqli_fetch_row($result);
-	  echo "Estoy conectado a la BBDD: " . $row[0] . "<br/>";
-	  mysqli_free_result($result);
-	}
-	$tabla_alumnnos = "CREATE TABLE IF NOT EXISTS alumnos (
+	    // Compruebo la BBDD a la que estoy actualmente conectado
+	    if ($result = mysqli_query($conector, "SELECT DATABASE()")) {
+	        $row = mysqli_fetch_row($result);
+	        echo "Estoy conectado a la BBDD: " . $row[0] . "<br/>";
+	        mysqli_free_result($result);
+	    }
+
+	    $tabla_alumnnos = "CREATE TABLE IF NOT EXISTS alumnos (
 		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 		codalumno INT(10) not null,
 		nombre VARCHAR(30) not null,
@@ -45,14 +46,14 @@
 		    echo "No ha sido posible crear la tabla: ". mysqli_error($conector);
 		}
 
-	$mysqli_close($conector);
 
 	} else {
 	     echo "Ha fallado la conexión con MySQL: " .  mysqli_connect_error();
 	     exit();	
 	}
 
-	
+	$mysqli_close($conector);
+
 	?>
     </body>
 </html>
