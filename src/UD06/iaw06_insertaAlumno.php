@@ -1,17 +1,9 @@
 <?php
     	include 'constants.php';
+	include 'conector.php';
 	
-	// Creo una conexión a BBDD
-	$conector = mysqli_connect(HOST, USER, PASSWORD, NOMBRE_BBDD) or die("Coud not open a connection");
-
 	echo "Soy el script para insertar alumnos."."<br/>";
-	
-	// Compruebo el estado de la conexión
-	if (!$conector) {
-		die("Conector no disponible" . mysqli_connect_error());
-	} else {
-		echo "El conector funciona correctamente"."<br/>";
-	}
+	echo "Estado de la conexión -> " . $estado_de_la_conexion . "<br/>";
 
 	// Creo la tabla en BBDD si es la primera vez que se lanza el script
     	$tabla_alumnnos = "CREATE TABLE IF NOT EXISTS alumnos (
@@ -29,9 +21,13 @@
 		} else {
 		    echo "No ha sido posible crear la tabla: ". mysqli_error($conector);
 		}
+	    // Compruebo la BBDD a la que estoy actualmente conectado
+	    if ($result = mysqli_query($conector, "SELECT DATABASE()")) {
+	        $row = mysqli_fetch_row($result);
+	        echo "Estoy conectado a la BBDD: " . $row[0] . "<br/>";
+	        mysqli_free_result($result);
+	    }
 
-	// Cierro la conexión a BBDD
-	mysqli_close($conector);
     
 ?>
 
