@@ -9,6 +9,7 @@
 		$estado_de_la_conexion = "Conector no disponible";
 	} else {
 		$estado_de_la_conexion = "Conexión creada correctamente.";
+
 	}
 
 ?>

@@ -31,19 +31,22 @@
 	        mysqli_free_result($result);
 	    }
 
-	    $tabla_alumnnos = "CREATE TABLE IF NOT EXISTS alumnos (
-		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-		codalumno INT(10) not null,
-		nombre VARCHAR(30) not null,
-		direccion VARCHAR(45) not null,
-		curso VARCHAR(10) not null
-		)";
+    		$tabla_alumnnos = "CREATE TABLE IF NOT EXISTS alumnos (
+  			id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  			codalumno INT(10) NOT NULL,
+  			nombre VARCHAR(30) NOT NULL,
+  			direccion VARCHAR(45) NOT NULL,
+  			cursoId INT(6) UNSIGNED,
+  			CONSTRAINT fk_curso 
+  			FOREIGN KEY(cursoId) 
+    			REFERENCES curso(id)
+			);";
 		
 		if (mysqli_query($conector, $tabla_alumnos)) {
 		    echo "Tabla creada correctamente."."<br/>";
   		    
 		} else {
-		    echo "No ha sido posible crear la tabla: ". mysqli_error($conector);
+		    echo "No ha sido posible crear la tabla, o esta ya existe en la BBDD. ". mysqli_error($conector);
 		}
 
 
