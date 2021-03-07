@@ -118,7 +118,6 @@
 	    	    <tr>
 		        <?php
 		            foreach ($row as $value) {
-
 			        echo "<td>". $value ."</td>";
 		            }
 		        ?>	
