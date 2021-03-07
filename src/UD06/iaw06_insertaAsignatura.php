@@ -31,9 +31,9 @@
 	    
 	?>
 	<div class="center">
-		<form action="/PHP_IAW/src/UD06/forms/iaw06_insertaNotaForm.php">
-			<input type="submit" value="Volver al formulario" />
-		</form>
+	    <form action="/PHP_IAW/src/UD06/forms/iaw06_insertaNotaForm.php">
+		<input type="submit" value="Volver al formulario" />
+	    </form>
 	</div>
     </body>
 </html>

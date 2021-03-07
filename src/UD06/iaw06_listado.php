@@ -4,11 +4,7 @@
 	<link rel="stylesheet" href="style.css" type="text/css" media="all" />
     </head>
 	
-    <?php
-
-	include 'conector.php';
-
-    ?>
+    <?php include 'conector.php'; ?>
 	
     <body>
 	<h1 class="center">Datos por categoría</h1>
@@ -22,7 +18,7 @@
 	    $qry_alum = "SELECT * FROM alumnos order by nombre";
 	    $res_alum = mysqli_query($conector, $qry_alum);
 		
-	    // Itero los resultados de manera que cada vuelta del bucle for almacena el dato en $fila, para posteriormente iterarlos de nuevo con un bucle for each y poder obtener el valor de cada columna.
+	    /* Itero los resultados de manera que cada vuelta del bucle for almacena el dato en $fila, para posteriormente iterarlos de nuevo con un bucle for each y poder obtener el valor de cada columna.*/
 	    echo "Resultados de la búsqueda: " . "</br>" . "</br>";
 
 	    for ($i=0; $i < mysqli_num_rows($res_alum); $i++) {
@@ -41,23 +37,22 @@
 		            
 		        ?>	
 	            </tr>
+		</table>
 		<?php
     		    } // Llave de cierre del bucle for exterior
 		    mysqli_free_result($res_alum);
 		?>
-		</table>
-
-
 
 	<?php
 	    // El resto de resultados de tirar "querys" contra la BBDD son de proceso análogo al reflejado en la tabla alumnos.
 	?>
-	<h2 class="center">Cursos del centro</h2>
-	</br>
+
+	<h2 class="center">Cursos del centro</h2></br>
 
 	<table class="center">
+
 	<?php
-	    // En este caso, el único cambio es que uso directamente un único bucle for con la función mysqli_fetch_array, el cual me devuelve un array de datos al cuál accedo al resultado de la columna que deseo mediante 'array subscript'.
+	    /* En este caso, el único cambio es que uso directamente un único bucle for con la función mysqli_fetch_array, el cual me devuelve un array de datos al cuál accedo al resultado de la columna que deseo mediante 'array subscript'.*/
 	    $qry_cursos = "SELECT * FROM curso order by curso";
 	    $res_cursos = mysqli_query($conector, $qry_cursos);
 
@@ -70,17 +65,15 @@
 		<td><?php echo $row['nomcurso'];?></td>
 		<td><?php echo $row['numalumn'];?></td>
 	    </tr>
+	</table>
 
 	<?php
 	   }
 	   mysqli_free_result($res_cursos); 
 	?>
-	</table>
 
-
-
-	<h2 class="center">Asignaturas del centro</h2>
-	</br>
+	
+	<h2 class="center">Asignaturas del centro</h2></br>
 
 	<?php
 
@@ -105,15 +98,14 @@
 		            
 		        ?>	
 	            </tr>
+		</table>
 		<?php
     		    } // Llave de cierre del bucle for exterior
 		    mysqli_free_result($res_asig);
 		?>
-		</table>
 
 
-	<h2 class="center">Notas de los alumnos del centro</h2>
-	</br>
+	<h2 class="center">Notas de los alumnos del centro</h2></br>
 
 	<?php
 
@@ -126,7 +118,7 @@
 	    
 		$row = mysqli_fetch_row($res_nota);
 	    
-		?>
+	?>
 		<table>
 	    	    <tr>
 		        <?php
@@ -138,12 +130,11 @@
 		            
 		        ?>	
 	            </tr>
+		</table>
 		<?php
     		    } // Llave de cierre del bucle for exterior
 		    mysqli_free_result($res_nota);
 		?>
-		</table>
 
     </body>
-    
 </html>
