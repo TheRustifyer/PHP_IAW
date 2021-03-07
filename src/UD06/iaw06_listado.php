@@ -7,11 +7,10 @@
     <?php include 'conector.php'; ?>
 	
     <body>
-	<h1 class="center">Datos por categoría</h1>
-	</br>
 
-	<h2 class="center">Alumnos del centro</h2>
-	</br>
+	<h1 class="center">Datos por categoría</h1></br>
+
+	<h2 class="center">Alumnos del centro</h2></br>
 
 	<?php
 	    // Creo una query hacia la tabla alumnos y la almaceno en una variable, con objeto de pasársela como argumento a la func mysqli_query, junto con el conector.
@@ -30,11 +29,8 @@
 	    	    <tr>
 		        <?php
 		            foreach ($row as $value) {
-
 			        echo "<td>". $value ."</td>";
-			
-		            }
-		            
+		            }  
 		        ?>	
 	            </tr>
 		</table>
@@ -47,6 +43,7 @@
 	    // El resto de resultados de tirar "querys" contra la BBDD son de proceso análogo al reflejado en la tabla alumnos.
 	?>
 
+	<?php// Asignaturas ?>
 	<h2 class="center">Cursos del centro</h2></br>
 
 	<table class="center">
@@ -65,14 +62,16 @@
 		<td><?php echo $row['nomcurso'];?></td>
 		<td><?php echo $row['numalumn'];?></td>
 	    </tr>
-	</table>
+	
 
 	<?php
 	   }
 	   mysqli_free_result($res_cursos); 
 	?>
+	</table>
 
-	
+
+	<?php// Asignaturas ?>
 	<h2 class="center">Asignaturas del centro</h2></br>
 
 	<?php
@@ -91,11 +90,8 @@
 	    	    <tr>
 		        <?php
 		            foreach ($row as $value) {
-
 			        echo "<td>". $value ."</td>";
-			
 		            }
-		            
 		        ?>	
 	            </tr>
 		</table>
@@ -104,7 +100,7 @@
 		    mysqli_free_result($res_asig);
 		?>
 
-
+	<?php// Notas ?>
 	<h2 class="center">Notas de los alumnos del centro</h2></br>
 
 	<?php
@@ -117,7 +113,6 @@
 	    for ($i=0; $i < mysqli_num_rows($res_nota); $i++) {
 	    
 		$row = mysqli_fetch_row($res_nota);
-	    
 	?>
 		<table>
 	    	    <tr>
@@ -125,16 +120,14 @@
 		            foreach ($row as $value) {
 
 			        echo "<td>". $value ."</td>";
-			
 		            }
-		            
 		        ?>	
 	            </tr>
 		</table>
-		<?php
-    		    } // Llave de cierre del bucle for exterior
-		    mysqli_free_result($res_nota);
-		?>
+	    <?php
+    	        } // Llave de cierre del bucle for exterior
+	        mysqli_free_result($res_nota);
+	    ?>
 
     </body>
 </html>
