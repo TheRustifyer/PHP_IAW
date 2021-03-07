@@ -7,16 +7,20 @@
 
 	<form method="POST" action="../iaw06_insertaNota.php">
 
+            Código del alumno:<br> 
+	    <input type="text" id="codalum" name="codalum"/>
+	    <br><br />
+
             Código de la asignatura:<br> 
 	    <input type="text" id="codasig" name="codasig"/>
 	    <br><br />
 
-            Nombre de la asignatura:<br> 
-	    <input type="text" id="nomasig" name="nomasig"/>
+            Evaluación:<br> 
+	    <input type="text" id="eval" name="eval"/>
 	    <br><br />
 
-            Horas:<br> 
-	    <input type="text" id="horas" name="horas"/>
+            Nota:<br> 
+	    <input type="text" id="nota" name="nota"/>
 	    <br><br />
 
 	    <button type="submit" value="ENVIAR">Enviar</button>

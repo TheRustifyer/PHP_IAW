@@ -1,38 +1,41 @@
-<?php
-    	include 'constants.php';
-	include 'conector.php';
+    <head>
+        <title>Nuevo Alumno</title>
+    </head>
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
 	
-	echo "Soy el script para insertar alumnos."."<br/>";
-	echo "Estado de la conexión -> " . $estado_de_la_conexion . "<br/>";
+    <body>
+	<h1 class="center">Estado del registro de un nuevo alumno</h1>
+	<?php
+	    	include 'constants.php';
+		include 'conector.php';
 
-	// Creo la tabla en BBDD si es la primera vez que se lanza el script
-    	$tabla_alumnnos = "CREATE TABLE IF NOT EXISTS alumnos (
-  		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  		codalumno INT(10) NOT NULL,
-  		nombre VARCHAR(30) NOT NULL,
-  		direccion VARCHAR(45) NOT NULL,
-  		cursoId INT(6) UNSIGNED,
-  		CONSTRAINT fk_curso 
-  		FOREIGN KEY(cursoId) 
-    		REFERENCES curso(id)
-		);";
-		
-		if ($result = mysqli_query($conector, $tabla_alumnos)) {
-		    echo "Tabla creada correctamente."."<br/>";
-		    mysqli_free_result($result);
+
+		// Cojo los datos enviados a través del formulario    
+		$codalum = $_POST['codalum'];
+		$nombre = $_POST['nombre'];
+		$direccion = $_POST['direccion'];
+		$curso = $_POST['curso'];
+
+		// Inserto los datos en BBDD
+	    	$insert_alumno = "INSERT INTO alumnos 
+	  		(codalumno, nombre, direccion, cursoId)
+			VALUES($codalum, '$nombre', '$direccion', $curso);";
+
+
+	if ($result = mysqli_query($conector, $insert_alumno)) {
+	    echo "<h3 class='center'>Alumno " . $nombre ." creado correctamente."."<br/>"."</h3>";
   		    
-		} else {
-		    echo "No ha sido posible crear la tabla, o ya existe en BBDD. ". mysqli_error($conector)."<br/>";
-		}
+	} else {
+	    echo ("No ha sido posible registrar el alumno -> ". mysqli_error($conector))."<br/>"."<br/>";
+	}
 	    
-	    // Compruebo la BBDD a la que estoy actualmente conectado
-	    if ($result = mysqli_query($conector, "SELECT DATABASE()")) {
-	        $row = mysqli_fetch_row($result);
-	        echo "Estoy conectado a la BBDD: " . $row[0] . "<br/>";
-	        mysqli_free_result($result);
-	    }
-
-    
-?>
+	?>
+	<div class="center">
+		<form action="/PHP_IAW/src/UD06/forms/iaw06_insertaAlumnoForm.php">
+			<input type="submit" value="Volver al formulario" />
+		</form>
+	</div>
+    </body>
+</html>
 
 

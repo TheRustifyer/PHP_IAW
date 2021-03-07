@@ -2,25 +2,24 @@
     <head>
 	<title>Nueva asignatura</title>
     </head>
-	<h1>Introduzca los datos de la asignatura a crear</h1>
+	
     <body>
+	<h1>Introduzca los datos de la asignatura a crear</h1>
+	
+	</br>
 
-	<form method="POST" action="iaw06_insertaCurso.php">
-
-            Código del alumno:<br> 
-	    <input type="text" id="codalumn" name="codalumn"/>
-	    <br><br />
+	<form method="POST" action="../iaw06_insertaAsignatura.php">
 
             Código de la asignatura:<br> 
 	    <input type="text" id="codasig" name="codasig"/>
 	    <br><br />
 
-            Evaluación:<br> 
-	    <input type="text" id="eval" name="eval"/>
+            Nombre de la asignatura:<br> 
+	    <input type="text" id="nomasig" name="nomasig"/>
 	    <br><br />
 
-            Nota:<br> 
-	    <input type="text" id="nota" name="nota"/>
+            Horas de la asignatura:<br> 
+	    <input type="text" id="horas" name="horas"/>
 	    <br><br />
 
 	    <button type="submit" value="ENVIAR">Enviar</button>
