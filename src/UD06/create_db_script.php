@@ -21,7 +21,7 @@
 	    */
 	    if (!mysqli_connect_errno() && $conector) {
 	        echo "Conexión creada correctamente."."<br/>";
-	        mysqli_query($conector, $createDatabase);
+	        
 		if (mysqli_query($conector, $createDatabase)) {
 		    echo "BBDD ".NOMBRE_BBDD. " creada correctamente"."<br/>";
   		    
